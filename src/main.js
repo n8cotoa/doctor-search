@@ -6,13 +6,24 @@ import { DoctorService } from './doctor-api.js';
 import { getLatLong } from './geocode-api.js';
 
 $(document).ready(function() {
-  let conditionSearch = new DoctorService();
-  let conditions = conditionSearch.getConditions();
+  let searchOptions = new DoctorService();
+  let conditions = searchOptions.getConditions();
 
   conditions.then(function(response){
     let body = JSON.parse(response);
     body.data.forEach(function(condition){
       $("#conditions").append(`<option>${condition.name}</option>`);
+    });
+  },function(error) {
+    $('.showError').text(`There was an error: ${error.message}`);
+  });
+
+  let specialties = searchOptions.getConditions();
+
+  specialties.then(function(response){
+    let body = JSON.parse(response);
+    body.data.forEach(function(specialty){
+      $("#specialty").append(`<option>${specialty.name}</option>`);
     });
   },function(error) {
     $('.showError').text(`There was an error: ${error.message}`);
