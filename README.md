@@ -1,4 +1,4 @@
-# Project Title
+# Doctor Search
 
 #### Epicodus JavaScript API Independent Project, Aug 10, 2018
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-An application that users can use to input their medical symptoms and find appropriate doctors near them.
+An application that users can use to input their medical symptoms and find appropriate doctors near them using the Better Doctor API.
 
 ## User Stories
 
