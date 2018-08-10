@@ -1,11 +1,9 @@
 export class DoctorService {
-  getDoctors(attributes) {
-    return new Promise(resolve, reject) {
-      let doctorName = attributes.name, "";
-      let userSymptom = attributes.symptom, "";
+  getBySymptom(userSymptom) {
 
+    return new Promise(function(resolve, reject) {
       const request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${userSymptom}&name=${doctorName}&location=or-portland&skip=0&limit=10&user_key=${process.env.apiKey}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${userSymptom}&location=or-portland&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -15,6 +13,6 @@ export class DoctorService {
       }
       request.open('GET', url, true);
       request.send();
-    }
+    });
   }
 }
