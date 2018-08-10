@@ -36,32 +36,45 @@ $(document).ready(function() {
     e.preventDefault();
     $('#results').text("");
     $('.showError').text('');
-    let userSymptom = $("#conditions").val();
-    let doctorSearch = new DoctorService();
-    let promiseOfHealth = doctorSearch.getBySymptom(userSymptom);
+    let city = $("city").val();
+    let promiseOfLocation = getLatLong(city);
 
-    promiseOfHealth.then(function(response) {
-      let body = JSON.parse(response);
-      if (body.data !== []) {
-        body.data.forEach(function(data) {
-          data.practices.forEach(function(practice) {
-            let location = practice.visit_address;
-            let address = `${location.street}, ${location.city}, ${location.state} ${location.zip}`;
-            $("#results").append(
-              `<div class="card" style="width: 20rem;">
-                <div class="card-body">
-                  <h5 class="card-title">${practice.name}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Phone: ${(practice.phones[0].type == 'fax' ? practice.phones[1].number : practice.phones[0].number)}</h6>
-                  <p class="card-text">${address}</p>
-                  <p>${(practice.accepts_new_patients ? "Accepting new patients" : "Not accepting new patients")}</p>
-                </div>
-              </div>`
-            );
+    promiseOfLocation.then(function(response){
+      let location = JSON.parse(response);
+      let lat = location.results[0].geometry.location['lat'];
+      let lng = location.results[0].geometry.location['lng'];
+      console.log(`${lat},${lng}`);
+      // let geocodeLocation =
+      let userSymptom = $("#conditions").val();
+      let doctorSearch = new DoctorService();
+      let promiseOfHealth = doctorSearch.getBySymptom(userSymptom, `${lat},${lng}`);
+
+      promiseOfHealth.then(function(response) {
+        let body = JSON.parse(response);
+        console.log(body);
+        if (body.data !== []) {
+          body.data.forEach(function(data) {
+            data.practices.forEach(function(practice) {
+              let location = practice.visit_address;
+              let address = `${location.street}, ${location.city}, ${location.state} ${location.zip}`;
+              $("#results").append(
+                `<div class="card" style="width: 20rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">${practice.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Phone: ${(practice.phones[0].type == 'fax' ? practice.phones[1].number : practice.phones[0].number)}</h6>
+                    <p class="card-text">${address}</p>
+                    <p>${(practice.accepts_new_patients ? "Accepting new patients" : "Not accepting new patients")}</p>
+                  </div>
+                </div>`
+              );
+            });
           });
-        });
-      } else {
-        $('.showError').text('No doctors meet this search query');
-      }
+        } else {
+          $('.showError').text('No doctors meet this search query');
+        }
+      },function(error) {
+        $('.showError').text(`There was an error: ${error.message}`);
+      });
     },function(error) {
       $('.showError').text(`There was an error: ${error.message}`);
     });
