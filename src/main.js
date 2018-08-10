@@ -3,6 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { DoctorService } from './doctor-api.js';
+import { getLatLong } from './geocode-api.js';
 
 $(document).ready(function() {
   let conditionSearch = new DoctorService();
