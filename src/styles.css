@@ -16,12 +16,25 @@ body {
   margin: 5px;
 }
 
+form {
+  margin-bottom: 20px;
+}
+
 #symptom-form {
   display:none;
 }
 
 #doctor-form {
   display:none;
+}
+
+#results {
+  align-content: center;
+}
+
+.row {
+  align-items: stretch;
+  justify-content: center;
 }
 
 .card {
