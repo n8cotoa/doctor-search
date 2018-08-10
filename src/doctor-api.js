@@ -4,7 +4,7 @@ export class DoctorService {
       let doctorName = attributes.name, "";
       let userSymptom = attributes.symptom, "";
 
-      let request = new XMLHttpRequest();
+      const request = new XMLHttpRequest();
       let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${userSymptom}&name=${doctorName}&location=or-portland&skip=0&limit=10&user_key=${process.env.apiKey}`;
       request.onload = function() {
         if (this.status === 200) {
