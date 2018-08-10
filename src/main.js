@@ -60,7 +60,6 @@ $(document).ready(function() {
 
       promiseOfHealth.then(function(response) {
         let body = JSON.parse(response);
-        console.log(body);
         if (body.data !== []) {
           body.data.forEach(function(data) {
             data.practices.forEach(function(practice) {
