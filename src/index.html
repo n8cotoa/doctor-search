@@ -4,17 +4,28 @@
   <title>Add Title Here</title>
 </head>
 <body>
+  <div class="jumbotron">
+    <h1>Doctor Search</h1>
+  </div>
   <div class="container">
-    <form id="doctor-form">
+    <div class="splash_buttons">
+      <button id="symptomSearch"  class="btn btn-success" type="button">Search by Symptom</button>
+      <button id="doctorSearch"  class="btn btn-warning" type="button">Search by Doctor</button>
+    </div>
+
+    <form id="symptom-form">
       <div class="form-group">
         <label for="user-symptom">Search by Symptom</label>
         <input id="user-symptom" class="form-control" type="text" name="user-symptom">
       </div>
+      <button type="submit" class="btn btn-primary" name="button">Search</button>
+    </form>
+    <form id="doctor-form">
       <div class="form-group">
         <label for="doctor-name">Search by Doctor Name</label>
         <input id="doctor-name" class="form-control" type="text" name="doctor-name">
       </div>
-      <button type="submit" name="button">Search</button>
+      <button type="submit" class="btn btn-primary" name="button">Search</button>
     </form>
     <div class="col">
       <div id="results" class="row">

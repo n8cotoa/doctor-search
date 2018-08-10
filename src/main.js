@@ -5,7 +5,11 @@ import './styles.css';
 import { DoctorService } from './doctor-api.js';
 
 $(document).ready(function() {
-  $('#doctor-form').submit(function(e){
+  $('#symptomSearch').click(function(e) {
+
+  });
+
+  $('#symptom-form').submit(function(e){
     e.preventDefault();
     let userSymptom = $("#user-symptom").val();
     // let doctorName = $('#doctor-name').val();

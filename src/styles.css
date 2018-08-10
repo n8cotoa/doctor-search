@@ -1,6 +1,28 @@
 body {
-  background-color: #fffff0;
+  background-color: lightblue;
 }
+
+.jumbotron {
+  background-color: lightblue;
+  text-align: center;
+}
+
+.splash_buttons {
+  text-align: center;
+}
+
+.splash_buttons button {
+  padding: 5px;
+  margin: 5px;
+}
+
+/* #symptom-form {
+  display:none;
+}
+
+#doctor-form {
+  display:none;
+} */
 
 .card {
   padding: 10px;
