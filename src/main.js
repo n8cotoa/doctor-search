@@ -21,11 +21,12 @@ $(document).ready(function() {
           let location = practice.visit_address;
           let address = `${location.street}, ${location.city}, ${location.state} ${location.zip}`;
           $("#results").append(
-            `<div class="card" style="width: 18rem;">
+            `<div class="card" style="width: 20rem;">
               <div class="card-body">
                 <h5 class="card-title">${practice.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${practice.phones[0].number}, ${practice.phones[0].type}</h6>
                 <p class="card-text">${address}</p>
+                <p>${(practice.accepts_new_patients ? "Accepting new patients" : "Not accepting new patients")}</p>
               </div>
             </div>`
           );
